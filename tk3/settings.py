@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'db',
-    'favorite',
-    'download'
 ]
 
 MIDDLEWARE = [
@@ -62,7 +60,7 @@ ROOT_URLCONF = 'tk3.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,8 +81,12 @@ WSGI_APPLICATION = 'tk3.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env("DB_NAME"),
+        'USER': env("DB_USER"),
+        'PASSWORD': env("DB_PASSWORD"),
+        'HOST': env("DB_HOST"),
+        'PORT': env("DB_PORT"),
     }
 }
 
