@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
+    path('', include('tayangan.urls')),
     path('admin/', admin.site.urls),
     path('favorite/', include('favorite.urls')),
     path('download/', include('download.urls')),

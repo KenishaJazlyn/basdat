@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title>Detail Tayangan</title>
+    <style>
+        .page-title{
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: Roboto;
+            font-size: 20pt;
+        }
+        select {
+            background-color: #ba0b14;
+            color: #91A3B0;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 12pt;
+        }
+        select:hover {
+            background-color: #a00a12;
+        }
+        .btn {
+            background-color: #fff !important;
+            color: #ffffff;
+            padding: 10px 20px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; 
+            font-size: 16px;
+        }
+
+        .bayar:hover {
+            background-color: #a00a12;
+        }
+        .container {
+            text-align: center;
+        }
+        .btn {
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .review {
+        border: 1px solid #ddd;  
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        background: transparent; 
+    }
+    </style>
+</head>
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <h1 class="page-title">Judul Film</h1>
+    <div class="d-flex justify-center mb-3">
+        <button class="btn py-1 px-2 mx-3 bg-white">
+            Tonton
+        </button>
+        <button class="btn py-1 px-2 mx-3 bg-white">
+            Unduh
+        </button>
+        <button class="btn py-1 px-2 mx-3 bg-white">
+            Favorit
+        </button>
+    </div>
+    <h2 class="mb-3">Total View: &lt;data&gt;</h2>
+    <h2 class="mb-3">Rating Rata-Rata: &lt;data&gt;</h2>
+    <h2 class="mb-3">Sinopsis: &lt;data&gt;</h2>
+    <h2 class="mb-3">Durasi Film: &lt;data&gt;</h2>
+    <h2 class="mb-3">Tanggal Rilis Film: &lt;data&gt;</h2>
+    <h2 class="mb-3">URL Film: &lt;data&gt;</h2>
+    <h2 class="mb-3">Genre: </h2>
+    <div class="d-flex mb-3 flex-nowrap">
+        <button class="btn py-1 px-2 mr-1 bg-white">
+            Genre
+        </button>
+        <button class="btn py-1 px-2 mr-1 bg-white">
+            Genre
+        </button><button class="btn py-1 px-2 mr-1 bg-white">
+            Genre
+        </button>
+    </div>
+    <h2 class="mb-3">Asal negara: &lt;data&gt;</h2>
+    <h2 class="mb-3">Pemain: &lt;data&gt;</h2>
+    <h2 class="mb-3">Penulis Skenario: &lt;data&gt;</h2>
+    <h2 class="mb-3">Sutradara: &lt;data&gt;</h2>
+
+    
+    <div class="d-flex mb-3 justify-center w-100">
+        <div class="w-50 container">
+
+            <form>
+                <h2 class="mb-3">Form Ulasan</h2>
+                <div class="form-group mb-3">
+                    <textarea class="form-control" id="deskripsi" rows="4" placeholder="Tulis ulasan Anda"></textarea>
+                </div>
+                <label for="rating">Rating:</label>
+                <div class="form-group mb-3">
+                    <select class="form-control mb-3" id="rating">
+                        <option value="5">5 Bintang</option>
+                        <option value="4">4 Bintang</option>
+                        <option value="3">3 Bintang</option>
+                        <option value="2">2 Bintang</option>
+                        <option value="1">1 Bintang</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn mb-3">Kirim Ulasan</button>
+            </form>
+        </div>
+    
+    </div>
+    <h2 class="mb-3">Daftar Ulasan</h2>
+    <div class="review">
+        <p>oleh: &lt;data&gt;</p>
+        <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec justo vel libero tincidunt aliquet.</p>
+        <p class="review-rating">Rating: 4 Bintang</p>
+    </div>
+    <div class="review">
+        <p>oleh: &lt;data&gt;</p>
+        <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec justo vel libero tincidunt aliquet.</p>
+        <p class="review-rating">Rating: 4 Bintang</p>
+    </div>
+</body>
+
+{% endblock content %}
