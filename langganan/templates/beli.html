@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title>Halaman Beli</title>
+    <style>
+        .page-title{
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: Roboto;
+            font-size: 20pt;
+        }
+        .hal-beli{
+            border-collapse: collapse;
+            width: 100%;    
+            font-family:Roboto;      
+            border-radius: 15px;
+            overflow:hidden;
+            box-shadow: 4px 4px 7px #cd0711;
+              
+        }
+        .hal-beli th,
+        .hal-beli td {
+            border: 0.5px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .hal-beli thead {
+            background-color: #ba0b14;
+            color:#f2f2f2;
+            font-size: 15pt;
+        }
+        .hal-beli tbody {
+            background-color: #f2f2f2;
+            color:#91A3B0;
+            font-size: 12pt;
+        }
+        select {
+            background-color: #ba0b14;
+            color: #91A3B0;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 12pt;
+        }
+        select:hover {
+            background-color: #a00a12;
+        }
+        .bayar {
+            background-color: #ba0b14;
+            color: #ffffff;
+            padding: 10px 20px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; 
+            font-size: 16px;
+        }
+
+        .bayar:hover {
+            background-color: #a00a12;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <h1 class="page-title">Halaman Beli</h1>
+    <h2>Informasi Paket yang Ingin Dibeli:</h2> <br>
+    <table class="hal-beli">
+        <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Resolusi Layar</th>
+              <th>Dukungan Perangkat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>{{ nama }}</th>
+                <th>[Harga]</th>
+                <th>[Resolusi Layar]</th>
+                <th>[Dukungan Perangkat]</th>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h2>Pilih Metode Pembayaran:</h2>
+    <select id="metode" name="metode">
+        <option value="transfer">Transfer Bank</option>
+        <option value="kredit">Kartu Kredit</option>
+        <option value="ewallet">E-Wallet</option>
+    </select>
+    <div class="container">
+        <button class="bayar">Bayar</button>
+    </div>
+</body>
+{% endblock content %}
