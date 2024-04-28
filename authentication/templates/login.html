@@ -1,0 +1,178 @@
+{% extends 'baseAuth.html' %}
+{% load static %}
+
+{% block meta %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title>Pacilflix</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            background-image: url('https://i.ibb.co/SxKjWhQ/pacilflix4-1.jpg');
+            background-size: cover;
+        }
+        .login-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: auto;
+            width: 300px;
+            margin: 190px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 15px;
+            padding-left: 15px;
+            border-radius: 5px;
+            background-color: #0d0d0d95;
+        }
+        .page-title {
+            text-align: left;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family:Bebas Neue; 
+            font-size: 40pt;
+            color: #e50914;
+            width: 240;
+        }
+        tr {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        tbody {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fa333d; 
+            color: azure;
+            text-decoration: none; 
+            border-radius: 3px; 
+            border: 0.2px solid black; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease;
+            width: 203px;
+            font-size: 15pt;
+            font-family:Roboto; 
+        }
+        .button:hover {
+            background-color: #a20109; 
+        }
+        a.register-btn{
+            color: rgb(69, 69, 255);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <div class="login-card">
+        <h1 class="page-title">Login</h1>
+
+        <form method="POST", action="">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                </tr>
+
+                <tr>
+                    <td><input class="button login_btn" type="submit" value="Login"></td>
+                </tr>
+            </table>
+        </form>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        Don't have an account yet? <a class="register-btn" href="{% url 'authentication:register' %}">Register Now</a>
+    
+    </div>
+</body>
+{% endblock content %}
+
+
+
+<!-- .login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-box {
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #f8e068;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background-color: #f8e068 ;
+}
+
+.btn {
+    background-color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    align-items: center;
+}
+
+input{
+    align-items: center;
+    font-size: 17px;
+    width: 100%;
+}
+
+<div class="login-box">
+    <h1>Login</h1>
+
+    <form method="POST", action="">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+            </tr>
+
+            <tr>
+                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+            </tr>
+
+            <tr>
+                <td><input class="btn login_btn" type="submit" value="Login"></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+
+</div>
+</div> -->

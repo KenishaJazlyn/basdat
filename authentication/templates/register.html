@@ -1,0 +1,102 @@
+{% extends 'baseAuth.html' %}
+
+{% block meta %}
+    <title>Pacilflix</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            background-image: url('https://i.ibb.co/SxKjWhQ/pacilflix4-1.jpg');
+            background-size: cover;
+            font-family:Bebas Neue; 
+        }
+        .register-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            height: auto;
+            width: auto;
+            margin: 80px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 15px;
+            padding-left: 15px;
+            border-radius: 5px;
+            background-color: #0d0d0d95;
+        }
+        .page-title {
+            text-align: left;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 40pt;
+            color: #e50914;
+            width: 240;
+            font-family:Bebas Neue; 
+        }
+        form {
+            padding: 10px 20px;
+        }
+        input{
+            align-items: center;
+            font-size: 17px;
+            width: 100%;
+        }
+        tbody tr {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 20px;
+        }
+        .helptext {
+            font-size: 7pt;
+        }
+        .register-btn {
+            display: inline-block;
+            padding: 10px 100px;
+            background-color: #fa333d; 
+            color: azure;
+            text-decoration: none; 
+            border-radius: 3px; 
+            border: 0.2px solid black; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease;
+            width: 400;
+            font-size: 15pt;
+            font-family: Roboto;
+        }
+
+        .register-btn:hover {
+            background-color: #a20109; /* Warna latar belakang saat mouse diarahkan */
+        }
+    </style>
+{% endblock meta %}
+
+{% block content %}  
+
+<div class = "register-card">
+    
+    <h1 class="page-title">Register</h1>
+
+        <form method="POST" >  
+            {% csrf_token %}  
+            <table>  
+                {{ form.as_table }}  
+                <tr>  
+                    <td></td>
+                    <td><input class="register-btn" type="submit" name="submit" value="Register"/></td>  
+                </tr>  
+            </table>  
+        </form>
+
+    {% if messages %}  
+        <ul>   
+            {% for message in messages %}  
+                <li>{{ message }}</li>  
+                {% endfor %}  
+        </ul>   
+    {% endif %}
+
+</div>  
+
+{% endblock content %}
