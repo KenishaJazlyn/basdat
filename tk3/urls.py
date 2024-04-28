@@ -23,5 +23,6 @@ urlpatterns = [
     path('favorite/', include('favorite.urls')),
     path('download/', include('download.urls')),
     path('kontributor/', include('kontributor.urls')),
-    path('langganan/', include('langganan.urls'))
+    path('langganan/', include('langganan.urls')),
+    path('authentication/', include('authentication.urls')),
 ]

@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'download',
     'kontributor',
     'langganan',
-    'tayangan'
+    'tayangan',
+    'authentication',
 ]
 
 MIDDLEWARE = [
