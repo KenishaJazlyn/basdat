@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title>Daftar Kontributor</title>
+    <style>
+        .page-title{
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: Roboto;
+            font-size: 20pt;
+        }
+        .list-kontributor{
+            border-collapse: collapse;
+            width: 100%;    
+            font-family:Roboto;      
+            border-radius: 15px;
+            overflow:hidden;
+            box-shadow: 4px 4px 7px #cd0711;
+              
+        }
+        .list-kontributor th,
+        .list-kontributor td {
+            border: 0.5px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .list-kontributor thead {
+            background-color: #ba0b14;
+            color:#f2f2f2;
+            font-size: 15pt;
+        }
+        .list-kontributor tbody {
+            background-color: #f2f2f2;
+            color:#91A3B0;
+            font-size: 12pt;
+        }
+        select {
+            background-color: #ba0b14;
+            color: #91A3B0;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 12pt;
+        }
+        select:hover {
+            background-color: #a00a12;
+        }
+    </style>
+</head>
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <h1 class="page-title">Daftar Kontributor</h1>
+    <table class="list-kontributor">
+        <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Tipe: 
+                <select id="tipe" name="tipe">
+                    <option value="semua">Semua</option>
+                    <option value="sutradara">Sutradara</option>
+                    <option value="pemain">Pemain</option>
+                    <option value="penulis">Penulis Skenario</option>
+                </select>
+            </th>
+              <th>Jenis Kelamin</th>
+              <th>Kewarganegaraan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>[Nama]</th>
+                <th>[Tipe]</th>
+                <th>[Jenis Kelamin]</th>
+                <th>[Kewarganegaraan]</th>
+            </tr>
+            <tr>
+                <th>[Nama]</th>
+                <th>[Tipe]</th>
+                <th>[Jenis Kelamin]</th>
+                <th>[Kewarganegaraan]</th>
+            </tr>
+        </tbody>
+    </table>
+</body>
+{% endblock content %}
