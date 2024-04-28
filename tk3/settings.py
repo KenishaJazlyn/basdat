@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'download',
     'kontributor',
     'langganan',
+    'tayangan',
     'authentication',
 ]
 

@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title> Daftar Tayangan</title>
+    <style>
+        .page-title{
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: Roboto;
+            font-size: 20pt;
+        }
+        .list-tayangan{
+            border-collapse: collapse;
+            width: 100%;    
+            font-family:Roboto;      
+            border-radius: 15px;
+            overflow:hidden;
+            box-shadow: 4px 4px 7px #cd0711;
+              
+        }
+        .list-tayangan th,
+        .list-tayangan td {
+            border: 0.5px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .list-tayangan thead {
+            background-color: #ba0b14;
+            color:#f2f2f2;
+            font-size: 15pt;
+        }
+        .list-tayangan tbody {
+            background-color: #f2f2f2;
+            color:#91A3B0;
+            font-size: 12pt;
+        }
+        .btn {
+            background-color: #f2f2f2;
+            color:#ffffff !important;
+            font-size: 12pt;
+        }
+        select {
+            background-color: #ba0b14;
+            color: #91A3B0;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 12pt;
+        }
+        select::selection {
+            background: #ffffff;
+        }
+    </style>
+</head>
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <h1 class="page-title">Daftar Tayangan</h1>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control bg-transparent text-white" placeholder="Judul tayangan" aria-label="Judul tayangan" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary border-white" type="button"><i class="fas fa-search">Search</i></button>
+        </div>
+      </div>
+    <h3 class="mb-3">10 Tayangan Terbaik Minggu ini</h3>
+    <select class="mb-2 py-1 px-2" id="tipe" name="tipe">
+        <option select="selected" value="global">Top 10 Global</option>
+        <option value="nasional">Top 10 Negara Pengguna</option>
+    </select>
+    <table class="list-tayangan">
+        <thead>
+            <tr>
+              <th style="width: 5%;">Peringkat</th>
+              <th style="width: 30%;">Judul</th>
+              <th style="width: 50%;">Sinopsis Trailer</th>
+              <th style="width: 5%;">URL Trailer</th>
+              <th style="width: 5%;">Tanggal Rilis</th>
+              <th style="width: 5%;">Total View</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>[Peringkat]</th>
+                <th>[Judul]</th>
+                <th>[Sinopsis Trailer]</th>
+                <th>
+                <button class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                  Link
+                </button></th>
+                <th>[Tanggal Rilis]</th>
+                <th>[Total View]</th>
+            </tr>
+            <tr>
+                <th>[Peringkat]</th>
+                <th>[Judul]</th>
+                <th>[Sinopsis Trailer]</th>
+                <th>
+                <button class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                  Link
+                </button></th>
+                <th>[Tanggal Rilis]</th>
+                <th>[Total View]</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="my-3">Film</h3>
+
+    <table class="list-tayangan">
+        <thead>
+            <tr>
+                <th style="width: 30%;">Judul</th>
+                <th style="width: 50%;">Sinopsis Trailer</th>
+                <th style="width: 5%;">URL Trailer</th>
+                <th style="width: 5%;">Tanggal Rilis</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    <a href="{% url 'tayangan:show_detail_film' 1 %}" class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                        [Judul]
+                    </a></th>
+                </th>
+                <th>[Sinopsis Trailer]</th>
+                <th>
+                <button class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                  Link
+                </button></th>
+                <th>[Tanggal Rilis]</th>
+            </tr>
+            <tr>
+                <th>
+                    <a href="{% url 'tayangan:show_detail_film' 1 %}" class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                        [Judul]
+                    </a></th>
+                </th>
+                <th>[Sinopsis Trailer]</th>
+                <th>
+                <button class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                  Link
+                </button></th>
+                <th>[Tanggal Rilis]</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="my-3">Series</h3>
+
+    <table class="list-tayangan">
+        <thead>
+            <tr>
+                <th style="width: 30%;">Judul</th>
+                <th style="width: 50%;">Sinopsis Trailer</th>
+                <th style="width: 5%;">URL Trailer</th>
+                <th style="width: 5%;">Tanggal Rilis</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    <a href="{% url 'tayangan:show_detail_series' 1 %}" class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                        [Judul]
+                    </a></th>
+                </th>
+                <th>[Sinopsis Trailer]</th>
+                <th>
+                <button class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                  Link
+                </button></th>
+                <th>[Tanggal Rilis]</th>
+            </tr>
+            <tr>
+                <th>
+                    <a href="{% url 'tayangan:show_detail_series' 1 %}" class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                        [Judul]
+                    </a></th>
+                </th>
+                <th>[Sinopsis Trailer]</th>
+                <th>
+                <button class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                  Link
+                </button></th>
+                <th>[Tanggal Rilis]</th>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+{% endblock content %}
