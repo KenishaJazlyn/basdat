@@ -1,0 +1,88 @@
+{% extends 'baseAuth.html' %}
+{% load static %}
+
+{% block meta %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title>Pacilflix</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            background-image: url('https://i.ibb.co/SxKjWhQ/pacilflix4-1.jpg');
+            background-size: cover;
+        }
+        .landing-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: auto;
+            width: 350px;
+            margin: 190px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 15px;
+            padding-left: 15px;
+            border-radius: 5px;
+            background-color: #0d0d0d95;
+        }
+        .page-title {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family:Bebas Neue; 
+            font-size:40pt; 
+            color:#e50914
+        }
+        .button-box {
+            justify-content: center;
+            align-items: center;
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+            padding: 40px;
+        }
+        .or {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-family: Roboto;
+            font-size: 12pt;
+            color: #91A3B0;
+        }
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fa333d; 
+            color: azure;
+            text-decoration: none; 
+            border-radius: 3px; 
+            border: 0.2px solid black; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease;
+            width: 200;
+            font-size: 15pt;
+            font-family: Roboto;
+        }
+
+        a.button:hover {
+            background-color: #a20109; /* Warna latar belakang saat mouse diarahkan */
+        }
+    </style>
+</head>
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <div class="landing-card">
+        <h1 class="page-title">Pacilflix - B12</h1>
+        <div class="button-box">
+            <a href="{% url 'authentication:login' %}" class="button">Login</a>
+            <h3 class="or">OR</h3>
+            <a href="{% url 'authentication:register' %}" class="button">Register</a>
+        </div>
+    </div>
+</body>
+{% endblock content %}
