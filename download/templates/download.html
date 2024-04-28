@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title> Daftar download</title>
+    <style>
+        .page-title{
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: Roboto;
+            font-size: 20pt;
+        }
+        .list-download{
+            border-collapse: collapse;
+            width: 100%;    
+            font-family:Roboto;      
+            border-radius: 15px;
+            overflow:hidden;
+            box-shadow: 4px 4px 7px #cd0711;
+              
+        }
+        .list-download th,
+        .list-download td {
+            border: 0.5px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .list-download thead {
+            background-color: #ba0b14;
+            color:#f2f2f2;
+            font-size: 15pt;
+        }
+        .list-download tbody {
+            background-color: #f2f2f2;
+            color:#91A3B0;
+            font-size: 12pt;
+        }
+    </style>
+</head>
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <h1 class="page-title">Daftar download</h1>
+    <table class="list-download">
+        <thead>
+            <tr>
+              <th style="width: 60%;">Judul</th>
+              <th style="width: 30%;">Waktu Diunduh</th>
+              <th style="width: 10%;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>[Judul]</th>
+                <th>[Waktu Ditambahkan]</th>
+                <th>
+                <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
+                  Hapus
+                </button></th>
+            </tr>
+            <tr>
+              <th>[Judul]</th>
+              <th>[Waktu Ditambahkan]</th>
+              <th>
+                <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
+                Hapus
+              </button></th>
+            </tr>
+        </tbody>
+    </table>
+</body>
+{% endblock content %}
