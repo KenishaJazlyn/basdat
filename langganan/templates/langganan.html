@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title>Halaman Kelola Langganan</title>
+    <style>
+        .page-title{
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: Roboto;
+            font-size: 20pt;
+        }
+        .list-langganan{
+            border-collapse: collapse;
+            width: 100%;    
+            font-family:Roboto;      
+            border-radius: 15px;
+            overflow:hidden;
+            box-shadow: 4px 4px 7px #cd0711;
+              
+        }
+        .list-langganan th,
+        .list-langganan td {
+            border: 0.5px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .list-langganan thead {
+            background-color: #ba0b14;
+            color:#f2f2f2;
+            font-size: 15pt;
+        }
+        .list-langganan tbody {
+            background-color: #f2f2f2;
+            color:#91A3B0;
+            font-size: 12pt;
+        }
+    </style>
+</head>
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <h1 class="page-title">Halaman Kelola Langganan</h1>
+    <h2>Paket Langganan Aktif Anda:</h2> <br>
+    <table class="list-langganan">
+        <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Resolusi Layar</th>
+              <th>Dukungan Perangkat</th>
+              <th>Tanggal Dimulai</th>
+              <th>Tanggal Akhir</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>[Nama]</th>
+                <th>[Harga]</th>
+                <th>[Resolusi Layar]</th>
+                <th>[Dukungan Perangkat]</th>
+                <th>[Tanggal Dimulai]</th>
+                <th>[Tanggal Akhir]</th>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h2>Pilih Paket Lain:</h2> <br>
+    <table class="list-langganan">
+        <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Resolusi Layar</th>
+              <th>Dukungan Perangkat</th>
+              <th>Beli</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Premium</th>
+                <th>[Harga]</th>
+                <th>[Resolusi Layar]</th>
+                <th>[Dukungan Perangkat]</th>
+                <th>
+                    <a href="{% url 'langganan:show_beli' 0 %}">
+                        <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
+                        Beli
+                        </button>
+                    </a>
+                </th>
+            </tr>
+            <tr>
+                <th>Standar</th>
+                <th>[Harga]</th>
+                <th>[Resolusi Layar]</th>
+                <th>[Dukungan Perangkat]</th>
+                <th>
+                    <a href="{% url 'langganan:show_beli' 1 %}">
+                        <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
+                        Beli
+                        </button>
+                    </a>
+                </th>
+            </tr>
+            <tr>
+                <th>Basic</th>
+                <th>[Harga]</th>
+                <th>[Resolusi Layar]</th>
+                <th>[Dukungan Perangkat]</th>
+                <th>
+                    <a href="{% url 'langganan:show_beli' 2 %}">
+                        <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
+                        Beli
+                        </button>
+                    </a>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h2>Riwayat Transaksi</h2> <br>
+    <table class="list-langganan">
+        <thead>
+            <tr>
+              <th>Nama Paket</th>
+              <th>Tanggal Dimulai</th>
+              <th>Tanggal Akhir</th>
+              <th>Metode Pembayaran</th>
+              <th>Tanggal Pembayaran</th>
+              <th>Total Pembayaran</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>[Nama Paket]</th>
+                <th>[Tanggal Dimulai]</th>
+                <th>[Tanggal Akhir]</th>
+                <th>[Metode Pembayaran]</th>
+                <th>[Tanggal Pembayaran]</th>
+                <th>[Total Pembayaran]</th>
+            </tr>
+            <tr>
+                <th>[Nama Paket]</th>
+                <th>[Tanggal Dimulai]</th>
+                <th>[Tanggal Akhir]</th>
+                <th>[Metode Pembayaran]</th>
+                <th>[Tanggal Pembayaran]</th>
+                <th>[Total Pembayaran]</th>
+            </tr>
+        </tbody>
+    </table>
+</body>
+{% endblock content %}
