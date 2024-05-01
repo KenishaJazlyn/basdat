@@ -61,12 +61,14 @@
 {% block content %}
 <body>
     <h1 class="page-title">Daftar Tayangan</h1>
-    <div class="input-group mb-3">
-        <input type="text" class="form-control bg-transparent text-white" placeholder="Judul tayangan" aria-label="Judul tayangan" aria-describedby="basic-addon2">
+    
+    <form class="input-group mb-3" action="{%url 'tayangan:search' %}" method="get">
+        <input type="text" name="q" class="form-control bg-transparent text-white" placeholder="Judul tayangan" aria-label="Judul tayangan" aria-describedby="basic-addon2">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary border-white" type="button"><i class="fas fa-search">Search</i></button>
+            <button type="submit" class="btn btn-outline-secondary border-white"><i class="fas fa-search">Search</i></button>
         </div>
-      </div>
+    </form>
+      
     <h3 class="mb-3">10 Tayangan Terbaik Minggu ini</h3>
     <select class="mb-2 py-1 px-2" id="tipe" name="tipe">
         <option select="selected" value="global">Top 10 Global</option>

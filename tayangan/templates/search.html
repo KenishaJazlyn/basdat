@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title>Detail Tayangan</title>
+    <style>
+        .page-title{
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: Roboto;
+            font-size: 20pt;
+        }
+        select {
+            background-color: #ba0b14;
+            color: #91A3B0;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 12pt;
+        }
+        select:hover {
+            background-color: #a00a12;
+        }
+        .btn {
+            background-color: #fff !important;
+            color: #ffffff;
+            padding: 10px 20px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; 
+            font-size: 16px;
+        }
+
+        .bayar:hover {
+            background-color: #a00a12;
+        }
+        .container {
+            text-align: center;
+        }
+        .btn {
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .review {
+            border: 1px solid #ddd;  
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background: transparent; 
+        }
+
+        .list-tayangan{
+            border-collapse: collapse;
+            width: 100%;    
+            font-family:Roboto;      
+            border-radius: 15px;
+            overflow:hidden;
+            box-shadow: 4px 4px 7px #cd0711;
+              
+        }
+        .list-tayangan th,
+        .list-tayangan td {
+            border: 0.5px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .list-tayangan thead {
+            background-color: #ba0b14;
+            color:#f2f2f2;
+            font-size: 15pt;
+        }
+        .list-tayangan tbody {
+            background-color: #f2f2f2;
+            color:#91A3B0;
+            font-size: 12pt;
+        }        
+    </style>
+</head>
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <h1 class="page-title">Daftar Tayangan</h1>
+    
+    <form class="input-group mb-3" action="{%url 'tayangan:search' %}" method="get">
+        <input type="text" name="q" class="form-control bg-transparent text-white" value="{{search_term}}" aria-label="Judul tayangan" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-secondary border-white"><i class="fas fa-search">Search</i></button>
+        </div>
+    </form>
+
+    <h1 class="mb-3">Hasil pencarian "{{search_term}}"</h1>
+    
+    <table class="list-tayangan">
+        <thead>
+            <tr>
+              <th style="width: 30%;">Judul</th>
+              <th style="width: 50%;">Sinopsis Trailer</th>
+              <th style="width: 5%;">URL Trailer</th>
+              <th style="width: 5%;">Tanggal Rilis</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>[Judul]</th>
+                <th>[Sinopsis Trailer]</th>
+                <th>
+                <button class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                  Link
+                </button></th>
+                <th>[Tanggal Rilis]</th>
+            </tr>
+            <tr>
+                <th>[Judul]</th>
+                <th>[Sinopsis Trailer]</th>
+                <th>
+                <button class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                  Link
+                </button></th>
+                <th>[Tanggal Rilis]</th>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+{% endblock content %}
