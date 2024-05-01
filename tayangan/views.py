@@ -13,3 +13,7 @@ def show_detail_series(request, id):
 def show_detail_episode(request, idSeries, idEpisode):
     return render(request, 'detail_episode.html')
 
+def search(request):
+    query = request.GET.get('q')
+    context = {'search_term' : query}
+    return render(request, 'search.html', context)
