@@ -44,7 +44,7 @@
 
 {% block content %}
 <body>
-    <h1 class="page-title">[Judul Daftar Favorite]</h1>
+    <h1 class="page-title">{{judul}}</h1>
     <table class="list-favorite">
         <thead>
             <tr>
@@ -53,20 +53,19 @@
             </tr>
         </thead>
         <tbody>
+            {% for f in list_favorite %}
             <tr>
-                <th>[Judul]</th>
+                <th>{{f.judul_tayangan}}</th>
                 <th>
-                <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
-                  Hapus
-                </button></th>
+                    <form method="POST" action="{% url 'favorite:delete_tayangan_favorit' f.id_tayangan f.timestamp%}">
+                        {% csrf_token %}
+                     <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
+                        Hapus
+                    </button> </form>
+                </th>
+                
             </tr>
-            <tr>
-              <th>[Judul]</th>
-              <th>
-                <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
-                Hapus
-              </button></th>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </body>

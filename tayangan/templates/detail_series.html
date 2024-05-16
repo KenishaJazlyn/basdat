@@ -179,11 +179,12 @@
                         </p>
                 </div>
                 <div class="items-center px-4 py-3">
-                    <div class="items-center px-4 py-3">
-                        <a href="{% url 'download:show_download' %}" class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-700 focus:outline-none">
-                            Daftar Unduhan
-                        </a>                    
-                    </div>
+                    <form method="POST" action="{% url 'tayangan:unduh_view' id %}">
+                        {% csrf_token %}
+                    <button class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-700 focus:outline-none">
+                        Daftar Unduhan
+                    </button>      
+                    </form>          
                 </div>
             </div>
         </div>
@@ -195,19 +196,20 @@
                 <h3 class="text-lg leading-6 font-medium text-gray-900">TAMBAH KE DAFTAR FAVORIT</h3>
                 <p class="text-sm mt-2 text-gray-500">Judul Daftar Unduhan :</p>
                 <div class="mt-2 px-7 py-3">
-                    <select id="favoriteListDropdown" style="display: block; width: 100%; font-size: 1rem; font-weight: medium; border-radius: 0.375rem; border: 1px solid #cccccc; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); color: black;">
-                        <option value="judul1">Judul 1</option>
-                        <option value="judul2">Judul 2</option>
-                        <option value="judul3">Judul 3</option>
-                    </select>
-                    
+                    <form id="favoriteForm" method="POST" action="{% url 'tayangan:favorit_view' id %}">
+                        {% csrf_token %}
+                        <select name="favoriteListDropdown" id="favoriteListDropdown" style="display: block; width: 100%; font-size: 1rem; font-weight: medium; border-radius: 0.375rem; border: 1px solid #cccccc; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); color: black;">
+                            {% for f in favorite %}
+                            <option value="{{ f.timestamp }}">{{ f.judul }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
-
                 <div class="items-center px-4 py-3">
-                    <a href="{% url 'favorite:show_favorite' %}" class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-700 focus:outline-none">
+                    <button type="submit" class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-700 focus:outline-none">
                         Tambah
-                    </a>   
-                </div>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
