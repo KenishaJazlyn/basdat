@@ -33,9 +33,16 @@ def register(request):
         try:
             cursor.execute('set search_path to public')
             cursor.execute(query)
-            return redirect('authentication:login')
+            return redirect('tayangan:show_tayangan')
         except InternalError as e: 
-            messages.info(request, str(e.args))
+            # messages.info(request, str(e.args))
+            error_message = str(e.args[0])
+            start_index = error_message.find('Username')
+            end_index = error_message.find('CONTEXT')
+            if start_index != -1:
+                # Extract the relevant part of the error message
+                error_message = error_message[start_index:end_index]
+            messages.info(request, error_message)
     return render(request, 'register.html')
 
 def login_user(request):
