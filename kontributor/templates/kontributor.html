@@ -62,30 +62,52 @@
               <th>Nama</th>
               <th>Tipe: 
                 <select id="tipe" name="tipe">
-                    <option value="semua">Semua</option>
-                    <option value="sutradara">Sutradara</option>
-                    <option value="pemain">Pemain</option>
-                    <option value="penulis">Penulis Skenario</option>
+                    <option value="0">Semua</option>
+                    <option value="1">Sutradara</option>
+                    <option value="2">Pemain</option>
+                    <option value="3">Penulis Skenario</option>
                 </select>
             </th>
               <th>Jenis Kelamin</th>
               <th>Kewarganegaraan</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <th>[Nama]</th>
-                <th>[Tipe]</th>
-                <th>[Jenis Kelamin]</th>
-                <th>[Kewarganegaraan]</th>
-            </tr>
-            <tr>
-                <th>[Nama]</th>
-                <th>[Tipe]</th>
-                <th>[Jenis Kelamin]</th>
-                <th>[Kewarganegaraan]</th>
-            </tr>
+        <tbody id="contributor_table">
+            
         </tbody>
     </table>
 </body>
+
+<script>
+    async function getContributor() {
+        return fetch("{% url 'kontributor:get_kontributor' 0 %}".replace(/0/, document.getElementById("tipe").value))
+            .then((res) => res.json())
+    }
+
+    async function refreshContributor() {
+        document.getElementById("contributor_table").innerHTML = "<tr><th colspan='4'>Loading</th></tr>";
+        let htmlString = ``;
+        const contributor = await getContributor();
+        let index = 0;
+        // console.log(contributor);
+        while (contributor.length != index) {
+            item = contributor[index]
+            htmlString += `\n<tr>
+                            <th>${item.nama}</th>
+                            <th>${item.tipe}</th>
+                            <th>${item.jenis_kelamin}</th>
+                            <th>${item.kewarganegaraan}</th>
+                        </tr>`;
+            index++;
+        }
+        document.getElementById("contributor_table").innerHTML = htmlString;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("tipe").onchange = function() {
+            refreshContributor();
+        };
+    });
+    refreshContributor();
+</script>
 {% endblock content %}

@@ -84,22 +84,24 @@
         </thead>
         <tbody>
             <tr>
-                <th>{{ nama }}</th>
-                <th>[Harga]</th>
-                <th>[Resolusi Layar]</th>
-                <th>[Dukungan Perangkat]</th>
+                <th>{{paket.0.nama}}</th>
+                <th>{{paket.0.harga}}</th>
+                <th>{{paket.0.resolusi_layar}}</th>
+                <th>{{paket.0.perangkat}}</th>
             </tr>
         </tbody>
     </table>
     <br>
     <h2>Pilih Metode Pembayaran:</h2>
-    <select id="metode" name="metode">
-        <option value="transfer">Transfer Bank</option>
-        <option value="kredit">Kartu Kredit</option>
-        <option value="ewallet">E-Wallet</option>
-    </select>
-    <div class="container">
-        <button class="bayar">Bayar</button>
-    </div>
+    <form method="post" action="{% url 'langganan:beli' paket.0.nama %}">
+        <select id="metode" name="metode">
+            <option value="Bank Transfer">Transfer Bank</option>
+            <option value="Credit Card">Kartu Kredit</option>
+            <option value="E-wallets">E-Wallet</option>
+        </select>
+        <div class="container">
+            <button class="bayar" type="submit">Bayar</button>
+        </div>
+    </form>
 </body>
 {% endblock content %}
