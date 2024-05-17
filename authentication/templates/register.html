@@ -81,7 +81,24 @@
         <form method="POST" >  
             {% csrf_token %}  
             <table>  
-                {{ form.as_table }}  
+                <div class="flex flex-col gap-2">
+                    <div class="text-white font-semibold">
+                        Username
+                    </div>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="username" type="text" placeholder="Username">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="text-white font-semibold">
+                        Password
+                    </div>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="password" type="password" placeholder="Password">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="text-white font-semibold">
+                        Asal Negara
+                    </div>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="asal_negara" type="text" placeholder="Asal Negara">
+                </div>
                 <tr>  
                     <td></td>
                     <td><input class="register-btn" type="submit" name="submit" value="Register"/></td>  
