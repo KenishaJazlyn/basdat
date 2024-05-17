@@ -104,3 +104,9 @@ def favorit_view(request, id):
         except InternalError as e: 
             messages.info(request, str(e.args))
         return  HttpResponseRedirect(reverse('favorite:show_favorite', kwargs={'timestamp': selected_timestamp}))
+
+def search(request):
+    query = request.GET.get('q')
+    context = {'search_term' : query}
+    return render(request, 'search.html', context)
+
