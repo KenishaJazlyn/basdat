@@ -6,14 +6,16 @@ from datetime import datetime
 from django.urls import reverse
 from django.contrib import messages
 
+
 def show_list_favorite(request):
     # username =  request.session['username'] 
     cursor = connection.cursor()
+    username = request.session['username']
     print("testttt")
     query = f"""
         SELECT f.judul, f.timestamp
         FROM daftar_favorit f
-        WHERE username = 'ashepherdsond'; 
+        WHERE username = '{username}'; 
     """
     cursor.execute('set search_path to public')
     cursor.execute(query)
@@ -33,12 +35,14 @@ def show_list_favorite(request):
     print(favorite)
     return render (request, 'list_fav.html',context)
 
+
 def show_favorite(request, timestamp):
     # username =  request.session['username']
     if timestamp == 'styles.css':
         print("1test")
         return HttpResponse(status=404) 
     print("2test")
+    username = request.session['username']
     try:
         timestamp_dt = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
     except ValueError:
@@ -47,7 +51,7 @@ def show_favorite(request, timestamp):
     query = f"""
         SELECT t.judul AS judul_tayangan, d.judul AS judul_daftar_favorit , f.id_tayangan, f.timestamp
         FROM tayangan_memiliki_daftar_favorit f, tayangan t, daftar_favorit d
-        WHERE f.id_tayangan = t.id AND d.username = 'ashepherdsond' AND f.timestamp= '{timestamp_dt}' AND d.timestamp = '{timestamp_dt}'; 
+        WHERE f.id_tayangan = t.id AND d.username = '{username}' AND f.timestamp= '{timestamp_dt}' AND d.timestamp = '{timestamp_dt}'; 
     """
     cursor.execute('set search_path to public')
     cursor.execute(query)
@@ -77,9 +81,10 @@ def parse(cursor):
 
 def delete_favorit(request, timestamp ):
     cursor = connection.cursor()
+    username = request.session['username']
     query = f"""
     DELETE FROM DAFTAR_FAVORIT
-    WHERE username = 'ashepherdsond' AND timestamp={timestamp} ;
+    WHERE username = '{username}' AND timestamp={timestamp} ;
     """
     cursor.execute('set search_path to public')
     cursor.execute(query)
@@ -89,9 +94,10 @@ def delete_favorit(request, timestamp ):
 
 def delete_tayangan_favorit(request, id_tayangan, timestamp ):
     cursor = connection.cursor()
+    username = request.session['username']
     query = f"""
     DELETE FROM TAYANGAN_MEMILIKI_DAFTAR_FAVORIT
-    WHERE username = 'ashepherdsond' AND id_tayangan='{id_tayangan}' AND timestamp='{timestamp}' ;
+    WHERE username = '{username}' AND id_tayangan='{id_tayangan}' AND timestamp='{timestamp}' ;
     """
     cursor.execute('set search_path to public')
     cursor.execute(query)

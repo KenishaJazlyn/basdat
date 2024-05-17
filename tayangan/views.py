@@ -7,17 +7,23 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 import download
 from download.views import show_download
+from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 def show_tayangan(request):
-    return render(request, 'list_tayangan.html')
+    username = request.session['username']
+    context = {'username' : username}
+    return render(request, 'list_tayangan.html', context)
 
 def show_detail_film(request, id):
     cursor = connection.cursor()
+    username = request.session['username']
     print("testttt")
     query1 = f"""
         SELECT f.judul, f.timestamp
         FROM daftar_favorit f
-        WHERE username = 'ashepherdsond'; 
+        WHERE username = '{username}'; 
     """
     cursor.execute('set search_path to public')
     cursor.execute(query1)
@@ -46,11 +52,12 @@ def parse(cursor):
 
 def show_detail_series(request, id):
     cursor = connection.cursor()
+    username = request.session['username']
     print("testttt")
     query1 = f"""
         SELECT f.judul, f.timestamp
         FROM daftar_favorit f
-        WHERE username = 'ashepherdsond'; 
+        WHERE username = '{username}'; 
     """
     cursor.execute('set search_path to public')
     cursor.execute(query1)

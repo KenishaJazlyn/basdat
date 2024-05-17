@@ -1,18 +1,22 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
 from django.db import connection, InternalError
 import datetime
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+
+
 def show_download(request):
     # username =  request.session['username'] 
     cursor = connection.cursor()
+    username = request.session['username']
     query = f"""
     SELECT t.judul, u.timestamp, u.id_tayangan
     FROM tayangan_terunduh u
     JOIN tayangan t ON t.id = u.id_tayangan
-    WHERE u.username = 'ashepherdsond'
+    WHERE u.username = '{username}'
     AND DATE_PART('year', AGE(NOW(), u.timestamp)) = 0
     AND DATE_PART('month', AGE(NOW(), u.timestamp)) = 0
     AND DATE_PART('day', AGE(NOW(), u.timestamp)) < 7;
@@ -39,9 +43,10 @@ def show_download(request):
 def delete_download(request, id_tayangan, timestamp ):
     if request.method == 'POST':
         cursor = connection.cursor()
+        username = request.session['username']
         query = f"""
         DELETE FROM TAYANGAN_TERUNDUH
-        WHERE username = 'ashepherdsond' AND id_tayangan= '{id_tayangan}' AND timestamp= '{timestamp}' ;
+        WHERE username = '{username}' AND id_tayangan= '{id_tayangan}' AND timestamp= '{timestamp}' ;
         """
         print("testini")
         try:
@@ -53,7 +58,7 @@ def delete_download(request, id_tayangan, timestamp ):
             SELECT t.judul, u.timestamp, u.id_tayangan
             FROM tayangan_terunduh u
             JOIN tayangan t ON t.id = u.id_tayangan
-            WHERE u.username = 'ashepherdsond'
+            WHERE u.username = '{username}'
             AND DATE_PART('year', AGE(NOW(), u.timestamp)) = 0
             AND DATE_PART('month', AGE(NOW(), u.timestamp)) = 0
             AND DATE_PART('day', AGE(NOW(), u.timestamp)) < 7;
