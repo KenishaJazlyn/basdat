@@ -1,47 +1,77 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages  
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
-import datetime
+import uuid
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from authentication.forms import RegisterForm
+from django.db import connection, InternalError
 
 # Create your views here.
 def show_landing(request):
-    return render(request, 'landing.html')
+    try:
+        context = {
+            'username': request.session['username']
+        } 
+        return render(request, 'landing.html', context)
+    except: 
+        context = {
+            'username': 'not found'
+        }
+        return render(request, 'landing.html', context)
 
 def register(request):
-    form = RegisterForm()
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        asal_negara = request.POST.get('asal_negara')
+        
+        cursor = connection.cursor()
+        query = f"""
+        INSERT INTO PENGGUNA VALUES ('{username}', '{password}', '{asal_negara}');
+        """
 
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your account has been successfully created!')
+        try:
+            cursor.execute('set search_path to public')
+            cursor.execute(query)
             return redirect('authentication:login')
-    context = {'form':form}
-    return render(request, 'register.html', context)
+        except InternalError as e: 
+            messages.info(request, str(e.args))
+    return render(request, 'register.html')
 
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            response = HttpResponseRedirect(reverse("main:show_main")) # iniganti
-            response.set_cookie('last_login', str(datetime.datetime.now()))
-            return response 
+        cursor = connection.cursor()
+        query = f"""
+        SELECT username, password
+        FROM pengguna p
+        WHERE p.password = '{password}' AND p.username = '{username}';
+        """
+        cursor.execute('set search_path to public')
+        cursor.execute(query)
+        res = parse(cursor)
+        
+        if len(res) == 1:
+            mem = res[0]
+            for attr in mem:
+                if isinstance(mem[attr], uuid.UUID):
+                    request.session[attr] = str(mem[attr])
+                else:
+                    request.session[attr] = mem[attr]
+            return redirect('tayangan:show_tayangan')
         else:
-            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
-    context = {}
-    return render(request, 'login.html', context)
+            messages.info(request, "Username atau password tidak valid. Silahkan coba kembali.")
+        
+        return render(request, 'login.html')
+            
+    return render(request, 'login.html')
+
+def parse(cursor):
+    columns = [col[0] for col in cursor.description]
+    return [dict(zip(columns, row)) for row in cursor.fetchall()]
 
 def logout_user(request):
-    logout(request)
+    request.session['username'] = 'not found'
     response = HttpResponseRedirect(reverse('authentication:landing'))
-    response.delete_cookie('last_login')
     return response
