@@ -5,18 +5,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-<nav class="navbar flex items-center justify-between flex-wrap bg-black p-3">
-    <div class="flex items-center flex-shrink-0">
-      <a href="{% url 'authentication:landing' %}" style="font-family:Bebas Neue; font-size:20pt; color:#e50914" class="mb-0 mr-5" >PacilFLix</a>
+<nav class="navbar flex items-center justify-between flex-wrap background-color: #e50914 p-7 ml-5">
+  <div class="flex items-center flex-shrink-0">
+    <h3 style="font-family:Bebas Neue; font-size:20pt; color:#e50914" class="mb-4 mr-5" ><a href="{% url 'authentication:landing' %}">
+      PacilFlix
+      </a></h3>
+  </div>
+  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="text-sm lg:flex-grow">
+      <a href="#responsive-header" class="block  lg:inline-block lg:mt-0 text-primary-500 hover:text-white ml-5 mr-4 mb-4">
+          Trailer Tayangan
+      </a>
     </div>
-    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-      <div class="text-sm lg:flex-grow">
-        <a href="#responsive-header" class="block  lg:inline-block lg:mt-0 text-primary-500 hover:text-white ml-5 mr-4 mb-0">
-           Trailer Tayangan
-          </a>
-      </div>
-      <div>
-        <a href="{% url 'authentication:logout' %}" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-primary-200 hover:bg-white mb-0">Logout</a>
-      </div>
-    </div>
-  </nav>
+  </div>
+</nav>
