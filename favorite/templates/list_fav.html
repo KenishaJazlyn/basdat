@@ -54,22 +54,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th>[Judul]</th>
-                <th>[Waktu Ditambahkan]</th>
+            {% for f in favorite %}
+            <tr> 
+                <th><a href="{% url 'favorite:show_favorite' f.timestamp %}" class="hover:bg-primary-400 text-blue-600 font-bold py-2 px-4 rounded">
+                   {{f.judul}}
+                    </a></th>
+                <th>{{f.timestamp}}</th>
                 <th>
-                <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
-                  Hapus
-                </button></th>
+                    <form method="POST" action="{% url 'favorite:delete_favorit' f.timestamp%}">
+                        {% csrf_token %}
+                     <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
+                        Hapus
+                    </button> </form>
+                </th>
             </tr>
-            <tr>
-              <th>[Judul]</th>
-              <th>[Waktu Ditambahkan]</th>
-              <th>
-                <button class="hover:bg-primary-400 text-red-600 font-bold py-2 px-4 rounded">
-                Hapus
-              </button></th>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </body>
