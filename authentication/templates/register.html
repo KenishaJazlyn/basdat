@@ -36,6 +36,8 @@
             font-family:Bebas Neue; 
         }
         form {
+            display: flex;
+            flex-direction: column;
             padding: 10px 20px;
         }
         input{
@@ -78,41 +80,40 @@
     
     <h1 class="page-title">Register</h1>
 
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                <div class="flex flex-col gap-2">
-                    <div class="text-white font-semibold">
-                        Username
-                    </div>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="username" type="text" placeholder="Username">
+    <form method="POST" >  
+        {% csrf_token %}  
+        <table>  
+            <div class="flex flex-col gap-2">
+                <div class="text-white font-semibold">
+                    Username
                 </div>
-                <div class="flex flex-col gap-2">
-                    <div class="text-white font-semibold">
-                        Password
-                    </div>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="password" type="password" placeholder="Password">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="username" type="text" placeholder="Username">
+            </div>
+            <div class="flex flex-col gap-2">
+                <div class="text-white font-semibold">
+                    Password
                 </div>
-                <div class="flex flex-col gap-2">
-                    <div class="text-white font-semibold">
-                        Asal Negara
-                    </div>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="asal_negara" type="text" placeholder="Asal Negara">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="password" type="password" placeholder="Password">
+            </div>
+            <div class="flex flex-col gap-2">
+                <div class="text-white font-semibold">
+                    Asal Negara
                 </div>
-                <tr>  
-                    <td></td>
-                    <td><input class="register-btn" type="submit" name="submit" value="Register"/></td>  
-                </tr>  
-            </table>  
-        </form>
-
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="asal_negara" type="text" placeholder="Asal Negara">
+            </div>
+            {% if messages %}  
+                <ul>   
+                    {% for message in messages %}  
+                        <li>{{ message }}</li>  
+                        {% endfor %}  
+                </ul>   
+            {% endif %}
+            <tr>  
+                <td></td>
+                <td><input class="register-btn" type="submit" name="submit" value="Register"/></td>  
+            </tr>  
+        </table>  
+    </form>
 
 </div>  
 
